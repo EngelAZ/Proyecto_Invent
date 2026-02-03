@@ -2,8 +2,8 @@ public class Product
 {
     public int Id;
     public String Name;
-    public Double Quantity;
-    public float Price;
+    public double Quantity;
+    public int Price;
     public String Description;
     public String Category;
     public boolean Status;
