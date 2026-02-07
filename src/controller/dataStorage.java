@@ -1,4 +1,5 @@
-package model;
+package controller;
+import model.product;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -7,11 +8,13 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
-public class DataStorage 
+
+
+public class dataStorage 
 {
     public static final String data = "src/db/Data.txt";
 
-    public static void save(ArrayList<Product> productos) 
+    public static void save(ArrayList<product> productos) 
     {
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(data,true))) 
@@ -19,7 +22,7 @@ public class DataStorage
 
             for (int i = 0; i < productos.size(); i++) 
             {
-                Product p = productos.get(i);
+                product p = productos.get(i);
                 writer.println(p.toString());
             }
 
@@ -28,9 +31,9 @@ public class DataStorage
         }
     }
 
-    public static ArrayList<Product> downloadData()
+    public static ArrayList<product> downloadData()
     {
-        ArrayList<Product> productos = new ArrayList<>();
+        ArrayList<product> productos = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(data)))
         {

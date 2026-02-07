@@ -1,19 +1,19 @@
-import model.DataStorage;
-import model.Product;
 import java.util.ArrayList;
+import controller.dataStorage;
+import model.product;
 
 public class Main
 {
     public static void main(String[] args) 
     {
         // creación del ArrayList
-        ArrayList<Product> productos = new ArrayList<>();
+        ArrayList<product> productos = new ArrayList<>();
 
         // prueba para agregar productos (aún no cuento con "Product.java" completo)
-        productos.add(new Product(1, "pollo", 2, 27, "arroz", "alimentos", false));
+        productos.add(new product(1, "arroz", 2, 27, "arroz", "alimentos", false));
 
         // mandamos a llamar DataStorage.save(productos);
-        DataStorage.save(productos);
+        dataStorage.save(productos);
 
         System.out.println("Guardado correctamente...");
     }    
