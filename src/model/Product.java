@@ -1,5 +1,5 @@
 package model;
-public class Product
+public class product
 {
 //Attributes
     private final int id;
@@ -10,7 +10,7 @@ public class Product
     private String category;
     private boolean status;
 
-    public Product(int id, String name, double quantity, int price, String description, String category, boolean status) 
+    public product(int id, String name, double quantity, int price, String description, String category, boolean status) 
     {
         this.id = id;
         this.name = name;

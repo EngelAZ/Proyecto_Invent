@@ -5,16 +5,16 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
-public class DataStorage 
+public class dataStorage 
 {
-    public static void save(ArrayList<Product> productos) 
+    public static void save(ArrayList<product> productos) 
     {
         try (PrintWriter writer = new PrintWriter(new FileWriter("Data.txt"))) 
         {
 
             for (int i = 0; i < productos.size(); i++) 
             {
-                Product p = productos.get(i);
+                product p = productos.get(i);
                 writer.println(p.toString());
             }
 
