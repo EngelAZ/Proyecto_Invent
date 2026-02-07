@@ -90,6 +90,12 @@ public class Product
     {
         this.status = true;
     }
+
+    @Override
+    public String toString()
+    {
+        return id + "," + name + "," + quantity + "," + price + "," + description + "," + category + "," + status;
+    }
     /*public Editing
     {
 
