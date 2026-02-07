@@ -1,3 +1,5 @@
+import model.DataStorage;
+import model.Product;
 import java.util.ArrayList;
 
 public class Main
