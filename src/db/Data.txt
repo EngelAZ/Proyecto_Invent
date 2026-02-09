@@ -1,4 +1,2 @@
-Guardado 
-1,arroz,2.0,27,arroz,alimentos,false
-1,pollo,2.0,27,arroz,alimentos,false
-1,arroz,2.0,27,arroz,alimentos,false
+1,chocolate tutto,5.0,46,chocolate en barra,dulces,true
+2,pinguino chocolate,5.0,35,pinguino marinela chocolate,dulces,true

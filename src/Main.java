@@ -1,20 +1,52 @@
 import java.util.ArrayList;
 import controller.dataStorage;
+import java.util.Scanner;
 import model.product;
 
 public class Main
 {
     public static void main(String[] args) 
     {
-        // creación del ArrayList
-        ArrayList<product> productos = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
 
-        // prueba para agregar productos (aún no cuento con "Product.java" completo)
-        productos.add(new product(1, "arroz", 2, 27, "arroz", "alimentos", false));
+        // descarga de los datos
+        ArrayList<product> productos = dataStorage.downloadData();
 
-        // mandamos a llamar DataStorage.save(productos);
-        dataStorage.save(productos);
+        // Ingreso de datos
+        System.out.print("ID: ");
+        int id = sc.nextInt();
+        sc.nextLine(); // limpiar el buffer
 
+        System.out.print("Nombre: ");
+        String name = sc.nextLine();
+
+        System.out.print("Cantidad: ");
+        double quantity = sc.nextDouble();
+
+        System.out.print("Precio: ");
+        int price = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Descripción: ");
+        String description = sc.nextLine();
+
+        System.out.print("Categoría: ");
+        String category = sc.nextLine();
+
+        System.out.print("¿Está disponible? (true / false): ");
+        boolean status = sc.nextBoolean();
+
+        // creación del producto con los datos ingresados
+        product nuevo = new product(id, name, quantity, price, description, category, status);
+
+        // Guardado en archivo
+        dataStorage.save(nuevo);
+
+        // mantenerlo en memoria
+        productos.add(nuevo);
+        
         System.out.println("Guardado correctamente...");
+
+        sc.close();
     }    
 }

@@ -12,20 +12,14 @@ import java.util.ArrayList;
 
 public class dataStorage 
 {
-    public static final String data = "src/db/Data.txt";
+    public static final String data = System.getProperty("user.dir") + "/src/db/Data.txt";
 
-    public static void save(ArrayList<product> productos) 
+    public static void save(product p) 
     {
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(data,true))) 
         {
-
-            for (int i = 0; i < productos.size(); i++) 
-            {
-                product p = productos.get(i);
-                writer.println(p.toString());
-            }
-
+            writer.println(p.toString());
         } catch (IOException e) {
             System.out.println("Error al guardar archivo");
         }
@@ -40,11 +34,37 @@ public class dataStorage
 
            String linea;
 
-           
-           
+           while ((linea = reader.readLine()) != null) 
+            {
+                // ignorar líneas vacías 
+                if (linea.trim().isEmpty()) continue;
+
+                String[] datos = linea.split(",");
+
+                // validar la cantidad de datos de product
+                if (datos.length != 7)
+                {
+                    System.out.println("Línea inválida: " + linea);
+                    continue;
+                }
+
+                product p = new product
+                (
+                    Integer.parseInt(datos[0].trim()),
+                    datos[1].trim(),
+                    Double.parseDouble(datos[2].trim()),
+                    Integer.parseInt(datos[3].trim()), 
+                    datos[4].trim(),
+                    datos[5].trim(),
+                    Boolean.parseBoolean(datos[6].trim())
+                );
+
+                productos.add(p);
+            }
 
         } catch (Exception e) {
-            // TODO: handle exception
+            System.out.println("Error al leer el archivo");
+            e.printStackTrace();
         }
 
         return productos;
