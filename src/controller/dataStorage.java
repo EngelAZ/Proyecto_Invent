@@ -1,23 +1,25 @@
 package controller;
-import model.product;
+
+import config.PathsConfig;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import model.product;
 
 
 
 
 public class dataStorage 
 {
-    public static final String data = System.getProperty("user.dir") + "/src/db/Data.txt";
+    public static final String DATA = PathsConfig.DATA_PRODUCT.toString();
 
     public static void save(product p) 
     {
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(data,true))) 
+        try (PrintWriter writer = new PrintWriter(new FileWriter(DATA,true))) 
         {
             writer.println(p.toString());
         } catch (IOException e) {
@@ -25,11 +27,12 @@ public class dataStorage
         }
     }
 
+    @SuppressWarnings("CallToPrintStackTrace")
     public static ArrayList<product> downloadData()
     {
         ArrayList<product> productos = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(data)))
+        try (BufferedReader reader = new BufferedReader(new FileReader(DATA)))
         {
 
            String linea;
@@ -64,7 +67,7 @@ public class dataStorage
 
         } catch (Exception e) {
             System.out.println("Error al leer el archivo");
-            e.printStackTrace();
+            e.printStackTrace(); // for debugging
         }
 
         return productos;

@@ -7,6 +7,7 @@ public class determineId
     //private final String direccionTxt;
     //private int id;
 
+    @SuppressWarnings("CallToPrintStackTrace")
     public static int getId(String direccionTxt)
     {
         int id = 0;
@@ -17,11 +18,11 @@ public class determineId
         }
         catch(FileNotFoundException fnfe)
         {
-            fnfe.printStackTrace();
+            fnfe.printStackTrace();// for debugging
         } 
         catch(IOException ioe)
         {
-            ioe.printStackTrace();
+            ioe.printStackTrace();// for debugging
         }
         return id + 1;
     }

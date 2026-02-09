@@ -3,3 +3,4 @@
 3,papaya,8.0,54,papaya extrema,nose ,true
 4,elote,70.0,90,elotepro,que se yo,true
 5,uva,23.0,12,uvania,son de pensilvania,true
+6,coco,45.0,40,coco del bueno,como se clasifica un coco xd,true
