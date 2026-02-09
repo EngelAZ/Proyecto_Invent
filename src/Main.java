@@ -1,9 +1,9 @@
 import config.PathsConfig;
-import controller.dataStorage;
+import controller.DataStorage;
 import java.util.ArrayList;
 import java.util.Scanner;
-import model.determineId;
-import model.product;
+import model.DetermineId;
+import model.Product;
 
 public class Main
 {
@@ -12,11 +12,11 @@ public class Main
         try(Scanner sc = new Scanner(System.in)){
 
             // descarga de los datos
-            ArrayList<product> productos = dataStorage.downloadData();
+            ArrayList<Product> productos = DataStorage.downloadData();
 
             // Ingreso de datos
             //System.out.print("ID: ");
-            int id = determineId.getId(PathsConfig.DATA_PRODUCT.toString());
+            int id = DetermineId.getId(PathsConfig.DATA_PRODUCT.toString());
             //sc.nextLine(); // limpiar el buffer
 
             System.out.print("Nombre: ");
@@ -39,10 +39,10 @@ public class Main
             boolean status = sc.nextBoolean();
 
             // creación del producto con los datos ingresados
-            product nuevo = new product(id, name, quantity, price, description, category, status);
+            Product nuevo = new Product(id, name, quantity, price, description, category, status);
 
             // Guardado en archivo
-            dataStorage.save(nuevo);
+            DataStorage.save(nuevo);
 
             // mantenerlo en memoria
             productos.add(nuevo);

@@ -7,16 +7,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import model.product;
+import model.Product;
 
 
 
 
-public class dataStorage 
+public class DataStorage 
 {
     public static final String DATA = PathsConfig.DATA_PRODUCT.toString();
 
-    public static void save(product p) 
+    public static void save(Product p) 
     {
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(DATA,true))) 
@@ -28,9 +28,9 @@ public class dataStorage
     }
 
     @SuppressWarnings("CallToPrintStackTrace")
-    public static ArrayList<product> downloadData()
+    public static ArrayList<Product> downloadData()
     {
-        ArrayList<product> productos = new ArrayList<>();
+        ArrayList<Product> productos = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(DATA)))
         {
@@ -51,7 +51,7 @@ public class dataStorage
                     continue;
                 }
 
-                product p = new product
+                Product p = new Product
                 (
                     Integer.parseInt(datos[0].trim()),
                     datos[1].trim(),

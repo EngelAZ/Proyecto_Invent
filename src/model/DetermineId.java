@@ -2,7 +2,7 @@ package model;
 
 import java.io.*;
 
-public class determineId
+public class DetermineId
 {
     //private final String direccionTxt;
     //private int id;
