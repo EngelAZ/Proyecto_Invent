@@ -1,6 +1,7 @@
-import java.util.ArrayList;
 import controller.dataStorage;
+import java.util.ArrayList;
 import java.util.Scanner;
+import model.determineId;
 import model.product;
 
 public class Main
@@ -13,9 +14,9 @@ public class Main
         ArrayList<product> productos = dataStorage.downloadData();
 
         // Ingreso de datos
-        System.out.print("ID: ");
-        int id = sc.nextInt();
-        sc.nextLine(); // limpiar el buffer
+        //System.out.print("ID: ");
+        int id = determineId.getId("src/db/Data.txt");
+        //sc.nextLine(); // limpiar el buffer
 
         System.out.print("Nombre: ");
         String name = sc.nextLine();
