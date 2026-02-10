@@ -1,52 +1,65 @@
 package controller;
 
+import config.PathsConfig;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import model.Product;
 import model.DetermineId;
+import model.Product;
 
-public class Controller {
+public class Controller 
+{
 
     Scanner sc = new Scanner(System.in);
-    ArrayList<Product> productos = DataStorage.downloadData();
+    ArrayList<Product> products = DataStorage.downloadData();
 
-    public void menu() {
+    public void menu() 
+    {
 
-        while (true) {
+        while (true) 
+        {
 
-            limpiarPantalla(); 
+            cleanScreen(); 
 
             System.out.println("----- MENÚ ------");
             System.out.println("1. Agregar producto");
             System.out.println("2. Salir");
             System.out.print("Opción: ");
 
-            int opcion;
+            int option;
 
-            try {
-                opcion = Integer.parseInt(sc.nextLine());
-            } catch (Exception e) {
+            try 
+            {
+                option = Integer.parseInt(sc.nextLine());
+            }
+            catch (InputMismatchException | NumberFormatException e) 
+            {
                 continue;
             }
 
-            switch (opcion) {
-                case 1:
-                    agregarProducto();
-                    break;
-                case 2:
+            switch (option) 
+            {
+                case 1 -> {
+                    addProduct();
+                }
+                case 2 -> {
                     System.out.println("Saliendo...");
                     return;
-                default:
+                }
+                default -> {
                     break;
+                }
             }
         }
     }
 
-    private void agregarProducto() {
+    private void addProduct() 
+    {
 
-        limpiarPantalla();
+        cleanScreen();
 
-        int id = DetermineId.getId("src/db/Data.txt");
+        int id = DetermineId.getId(PathsConfig.DATA_PRODUCT.toString());
 
         System.out.print("Nombre: ");
         String name = sc.nextLine();
@@ -69,22 +82,43 @@ public class Controller {
         Product nuevo = new Product(id, name, quantity, price, description, category, status);
 
         DataStorage.save(nuevo);
-        productos.add(nuevo);
+        products.add(nuevo);
+
+        cleanScreen();
 
         System.out.println("\nProducto guardado correctamente!");
-        pausar();
+        waitUser();
     }
 
-    private void pausar() {
+    private void waitUser() 
+    {
         System.out.println("\nPresione ENTER para volver al menú...");
         sc.nextLine();
     }
 
-    public static void limpiarPantalla() {
-        try {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (Exception e) {
-            System.out.println("Error al limpiar pantalla");
+    public static void cleanScreen() {
+        try 
+        {
+            // Compatible con Windows y Linux
+            if (System.getProperty("os.name").contains("Windows")) //consigue del sistema operativo su nombre y verifica si es windows 
+            {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();//Ejecuta el comando cls de windows para limpiar la consola
+                                                                                                //inheritIO() hace que el proceso hijo use la misma entrada/salida que el proceso padre
+                                                                                                //waitFor() espera a que el proceso termine antes de continuar
+                                                                                                //cmd /c indica que se va a ejecutar un comando y luego salir
+                                                                                                //start() inicia el proceso
+                                                                                                //new ProcessBuilder crea un nuevo proceso
+            } 
+            else 
+            {
+                System.out.print("\033[H\033[2J\033[3J"); // ANSI codigos de escape
+                System.out.flush();//Limpia la consola en sistemas tipo Unix (Linux, macOS), asegura que se apliquen los cambios inmediatamente
+
+            }
+        } 
+        catch (IOException | InterruptedException e) 
+        {
+            System.out.println("No se pudo limpiar la consola.");
         }
     }
 }
