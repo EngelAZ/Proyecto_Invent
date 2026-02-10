@@ -4,3 +4,6 @@
 4,elote,70.0,90,elotepro,que se yo,true
 5,uva,23.0,12,uvania,son de pensilvania,true
 6,coco,45.0,40,coco del bueno,como se clasifica un coco xd,true
+7,PAPA,1.0,100,patata grande,tuberculo comestible,true
+8,olla,1.0,200,olla mediana,cocina,true
+9,platano,1.0,12,platano mediano,vegetales,true
