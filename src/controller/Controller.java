@@ -24,7 +24,8 @@ public class Controller
 
             System.out.println("----- MENÚ ------");
             System.out.println("1. Agregar producto");
-            System.out.println("2. Salir");
+            System.out.println("2. Buscar producto");
+            System.out.println("3. Salir");
             System.out.print("Opción: ");
 
             int option;
@@ -44,6 +45,29 @@ public class Controller
                     addProduct();
                 }
                 case 2 -> {
+                    System.out.print("Ingrese el ID a buscar: ");
+                    int id = Integer.parseInt(sc.nextLine());
+
+                    Product encontrado = DataStorage.buscarProductoId(id);
+
+                    if (encontrado != null)
+                    {
+                        System.out.println("Producto encontrado: ");
+                        System.out.println(encontrado);
+                    }
+                    else
+                    {
+                        System.out.println("Producto no encontrado");
+                    }
+
+                    waitUser();
+                }
+                case 3 ->{
+                    System.out.print("Ingresar el ID del producto a eliminar: ");
+                    // TODO: 
+                    
+                }
+                case 4 ->{
                     System.out.println("Saliendo...");
                     return;
                 }
@@ -102,12 +126,13 @@ public class Controller
             // Compatible con Windows y Linux
             if (System.getProperty("os.name").contains("Windows")) //consigue del sistema operativo su nombre y verifica si es windows 
             {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();//Ejecuta el comando cls de windows para limpiar la consola
-                                                                                                //inheritIO() hace que el proceso hijo use la misma entrada/salida que el proceso padre
-                                                                                                //waitFor() espera a que el proceso termine antes de continuar
-                                                                                                //cmd /c indica que se va a ejecutar un comando y luego salir
-                                                                                                //start() inicia el proceso
-                                                                                                //new ProcessBuilder crea un nuevo proceso
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                /* Ejecuta el comando cls de windows para limpiar la consola
+                new ProcessBuilder crea un nuevo proceso
+                cmd /c indica que se va a ejecutar un comando y luego salir
+                inheritIO() hace que el proceso hijo use la misma entrada/salida que el proceso padre
+                start() inicia el proceso
+                waitFor() espera a que el proceso termine antes de continuar*/
             } 
             else 
             {
