@@ -16,6 +16,7 @@ public class DataStorage
 {
     public static final String DATA = PathsConfig.DATA_PRODUCT.toString();
 
+    // Método para guardar productos
     public static void save(Product p) 
     {
 
@@ -27,6 +28,7 @@ public class DataStorage
         }
     }
 
+    // Método para descargar productos en el Data.txt
     @SuppressWarnings("CallToPrintStackTrace")
     public static ArrayList<Product> downloadData()
     {
@@ -73,6 +75,7 @@ public class DataStorage
         return productos;
     }
 
+    // Método para buscar productos
     public static Product buscarProductoId(int idBuscar)
     {
         ArrayList<Product> productos = downloadData();
@@ -85,5 +88,29 @@ public class DataStorage
             }
         }
         return null;
+    }
+
+    // Método para eliminar productos
+    public static boolean eliminarProductoId(int id)
+    {
+        ArrayList<Product> products = downloadData();
+
+        boolean eliminado = false;
+
+        // recorrido y eliminación de producto
+        for (int i = 0; i < products.size(); i++)
+        {
+            if (products.get(i).getId() == id) 
+            {
+                products.remove(i);
+                eliminado = true;
+                break;
+            }
+        }
+
+        // reescribir el archivo
+        // TODO: 
+
+        return eliminado;
     }
 }

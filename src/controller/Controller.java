@@ -63,6 +63,11 @@ public class Controller
                     waitUser();
                 }
                 case 3 ->{
+                    System.out.print("Ingresar el ID del producto a eliminar: ");
+                    // TODO: 
+                    
+                }
+                case 4 ->{
                     System.out.println("Saliendo...");
                     return;
                 }
