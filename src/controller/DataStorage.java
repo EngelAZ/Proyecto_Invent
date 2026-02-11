@@ -72,4 +72,18 @@ public class DataStorage
 
         return productos;
     }
+
+    public static Product buscarProductoId(int idBuscar)
+    {
+        ArrayList<Product> productos = downloadData();
+
+        for (Product p : productos)
+        {
+            if (p.getId() == idBuscar)
+            {
+                return p;
+            }
+        }
+        return null;
+    }
 }
