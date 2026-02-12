@@ -65,8 +65,20 @@ public class Controller
                 }
                 case 3 ->{
                     System.out.print("Ingresar el ID del producto a eliminar: ");
-                    // TODO: 
+                    int id = Integer.parseInt(sc.nextLine());
 
+                    boolean eliminado = DataStorage.eliminarProductoId(id);
+
+                    if (eliminado)
+                    {
+                        System.out.println("Producto eliminado correctamente");
+                    }
+                    else
+                    {
+                        System.out.println("Producto no encontrado");
+                    }
+
+                    waitUser();
                 }
                 case 4 ->{
                     System.out.println("Saliendo...");
