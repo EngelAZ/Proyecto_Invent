@@ -25,7 +25,8 @@ public class Controller
             System.out.println("----- MENÚ ------");
             System.out.println("1. Agregar producto");
             System.out.println("2. Buscar producto");
-            System.out.println("3. Salir");
+            System.out.println("3. Eliminar producto");
+            System.out.println("4. Salir");
             System.out.print("Opción: ");
 
             int option;
@@ -64,8 +65,20 @@ public class Controller
                 }
                 case 3 ->{
                     System.out.print("Ingresar el ID del producto a eliminar: ");
-                    // TODO: 
-                    
+                    int id = Integer.parseInt(sc.nextLine());
+
+                    boolean eliminado = DataStorage.eliminarProductoId(id);
+
+                    if (eliminado)
+                    {
+                        System.out.println("Producto eliminado correctamente");
+                    }
+                    else
+                    {
+                        System.out.println("Producto no encontrado");
+                    }
+
+                    waitUser();
                 }
                 case 4 ->{
                     System.out.println("Saliendo...");

@@ -109,8 +109,18 @@ public class DataStorage
         }
 
         // reescribir el archivo
-        // TODO: 
-
+        if (eliminado)
+        {
+            try (PrintWriter writer = new PrintWriter(new FileWriter(DATA)))
+            {
+                for (Product p : products)
+                {
+                    writer.println(p.toString());
+                }
+            } catch (IOException e) {
+                System.out.println("Error al actualizar el archivo");
+            }
+        }
         return eliminado;
     }
 }
