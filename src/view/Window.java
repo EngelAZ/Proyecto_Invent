@@ -2,8 +2,8 @@ package view;
 
 import java.awt.Color;
 import javax.swing.JFrame;
-
-public class Window extends JFrame {
+public class Window extends JFrame 
+{
 
     /**
      * Constructor principal
@@ -62,6 +62,7 @@ public class Window extends JFrame {
     {
         // Aquí se inicializaran los componentes de la ventana, como botones, etiquetas, etc.
         // posiblemente se necesite un layout manager para organizar los componentes dentro de la ventana
+        this.add(new MenuView()); // Agrega la vista del menú a la ventana
     }
 
 }
