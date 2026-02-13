@@ -7,6 +7,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import model.DetermineId;
 import model.Product;
+import model.Ventas;
+
 
 public class Controller 
 {
@@ -26,7 +28,8 @@ public class Controller
             System.out.println("1. Agregar producto");
             System.out.println("2. Buscar producto");
             System.out.println("3. Eliminar producto");
-            System.out.println("4. Salir");
+            System.out.println("4. Realizar venta");
+            System.out.println("5. Salir");
             System.out.print("Opción: ");
 
             int option;
@@ -80,14 +83,24 @@ public class Controller
 
                     waitUser();
                 }
-                case 4 ->{
-                    System.out.println("Saliendo...");
-                    return;
+
+                 case 4 -> {
+                 Ventas v = new Ventas();
+                v.realizarVenta();
+                waitUser();
+                 }
+
+                 case 5 ->{
+                 System.out.println("Saliendo...");
+                 return;
                 }
+
                 default -> {
-                    break;
-                }
+                System.out.println("Opción inválida");
+
             }
+          }
+
         }
     }
 
