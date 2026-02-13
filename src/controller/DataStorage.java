@@ -122,5 +122,45 @@ public class DataStorage
             }
         }
         return eliminado;
+    } 
+
+    public static boolean disminuirCantidad(int id, double cantidad)
+    {
+        ArrayList<Product> products = downloadData();
+
+        for(Product p : products)
+        {
+            if(p.getId() == id)
+            {
+                if (p.getQuantity() >= cantidad) 
+                {
+                    p.setQuantity(p.getQuantity() - cantidad);
+
+                    rewriteAll(products);
+                    return true;
+                }
+                else
+                {
+                    System.out.println("Stock insuficiente.");
+                    return false;
+                }
+            }
+        }
+
+        System.out.println("Producto no encontrado.");
+        return false;
+    }
+
+    public static void rewriteAll(ArrayList<Product> products)
+    {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(DATA)))
+        {    
+            for (Product p : products)
+            {
+                writer.println(p.toString());
+            }
+        } catch (IOException e) {
+            System.out.println("Error al actualizar archivo.");
+        }
     }
 }
