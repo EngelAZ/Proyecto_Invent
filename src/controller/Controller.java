@@ -1,27 +1,13 @@
 package controller;
 
-import config.PathsConfig;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import model.DetermineId;
 import model.Product;
-import view.products.AddProductView;
 
 public class Controller 
 {
-    AddProductView addProductView;
-
-    public Controller(AddProductView addProductView)
-    {
-        this.addProductView = addProductView;
-        loadTable();
-
-    }
-
     Scanner sc = new Scanner(System.in);
-    ArrayList<Product> products = DataStorage.downloadData();
 
     public void menu()
     {
@@ -98,30 +84,6 @@ public class Controller
                 }
             }
         }
-    }
-
-    public void addProduct()
-    {
-        int id = DetermineId.getId(PathsConfig.DATA_PRODUCT.toString());
-        String name = addProductView.getNameField();
-        double quantity = addProductView.getQuantityField();
-        int price = addProductView.getPriceField();
-        String description = addProductView.getDescriptionField();
-        String category = addProductView.getCategory();
-
-        Product nuevo = new Product(id, name, quantity, price, description, category);
-
-        DataStorage.save(nuevo);
-        products.add(nuevo);
-
-        loadTable();
-        addProductView.clearFields();
-    }
-
-    private void loadTable()
-    {
-        ArrayList<Product> list = DataStorage.downloadData();
-        addProductView.updateTable(list);
     }
 
     private void waitUser()

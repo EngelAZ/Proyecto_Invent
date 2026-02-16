@@ -79,7 +79,7 @@ public class Product
         this.category = category;
         this.status = status;
     }
-    
+
     // Getters y Setters
     public int getId()
     {

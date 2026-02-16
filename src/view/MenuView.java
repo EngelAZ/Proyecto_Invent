@@ -1,6 +1,6 @@
 package view;
 
-import controller.Controller;
+import controller.AddProductController;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -75,7 +75,7 @@ public class MenuView extends JPanel {
         //Controlador tenga acceso a las vistas
 
         AddProductView addProductView = new AddProductView();
-        Controller c = new Controller(addProductView);
+        AddProductController c = new AddProductController(addProductView);
         addProductView.setController(c);
 
         // CONTENT PANEL WITH CARDLAYOUT TO SWITCH BETWEEN VIEWS

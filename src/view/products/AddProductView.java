@@ -33,6 +33,35 @@ public class AddProductView extends JPanel
         initComponents();
     }
 
+    public void setController(AddProductController controller)
+    {
+        btnAdd.addActionListener(e -> controller.addProduct());
+    }
+
+    public String getNameField()
+    {
+        return txtName.getText();
+    }
+
+    public double getQuantityField()
+    {
+        return Double.parseDouble(txtQuantity.getText());
+    }
+
+    public int getPriceField()
+    {
+        return Integer.parseInt(txtPrice.getText());
+    }
+
+    public String getDescriptionField()
+    {
+        return txtDescription.getText();
+    }
+
+    public String getCategory()
+    {
+        return txtCategory.getText();
+    }
     private void configurePanel()
     {
         this.setLayout(new BorderLayout());
@@ -84,37 +113,6 @@ public class AddProductView extends JPanel
         this.add(formPanel, BorderLayout.NORTH);
         this.add(tablePanel, BorderLayout.CENTER);
     }
-
-    public void setController(Controller controller)
-    {
-        btnAdd.addActionListener(e -> controller.addProduct());
-    }
-
-    public String getNameField()
-    {
-        return txtName.getText();
-    }
-
-    public double getQuantityField()
-    {
-        return Double.parseDouble(txtQuantity.getText());
-    }
-
-    public int getPriceField()
-    {
-        return Integer.parseInt(txtPrice.getText());
-    }
-
-    public String getDescriptionField()
-    {
-        return txtDescription.getText();
-    }
-
-    public String getCategory()
-    {
-        return txtCategory.getText();
-    }
-
 
     public void updateTable(ArrayList<Product> products)
     {
