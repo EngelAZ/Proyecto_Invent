@@ -58,7 +58,18 @@ public class Product
      * @param category - Categoría del producto
      * @param status - Estado del producto (true = en stock, false = agotado)
      */
-    public Product(int id, String name, double quantity, int price, String description, String category, boolean status) 
+    public Product(int id, String name, double quantity, int price, String description, String category) 
+    {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        this.description = description;
+        this.category = category;
+        this.status = true;
+    }
+
+        public Product(int id, String name, double quantity, int price, String description, String category, boolean status) 
     {
         this.id = id;
         this.name = name;
@@ -68,7 +79,7 @@ public class Product
         this.category = category;
         this.status = status;
     }
-    
+
     // Getters y Setters
     public int getId()
     {

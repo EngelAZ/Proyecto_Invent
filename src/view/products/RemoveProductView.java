@@ -1,4 +1,4 @@
-package view.dashboard;
+package view.products;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,12 +6,11 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class DashboardView extends JPanel
-{
-    public DashboardView()
+public class RemoveProductView extends JPanel {
+    public RemoveProductView()
     {
-            configurePanel();
-            initComponents();
+        configurePanel();
+        intComponents();
     }
 
     private void configurePanel()
@@ -20,10 +19,10 @@ public class DashboardView extends JPanel
         this.setBackground(new Color(242,240,239));
     }
 
-    private void initComponents()
+    private void intComponents()
     {
-        JLabel label = new JLabel("Dashboard", JLabel.CENTER);
-        label.setFont(new Font("Arial",Font.BOLD, 22));
+        JLabel label = new JLabel("RemoveProduct", JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 22));
         this.add(label, BorderLayout.CENTER);
     }
 }

@@ -1,28 +1,23 @@
 package controller;
 
-import config.PathsConfig;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import model.DetermineId;
 import model.Product;
 import model.Ventas;
 
 
 public class Controller 
 {
-
     Scanner sc = new Scanner(System.in);
-    ArrayList<Product> products = DataStorage.downloadData();
 
-    public void menu() 
+    public void menu()
     {
 
-        while (true) 
+        while (true)
         {
 
-            cleanScreen(); 
+            cleanScreen();
 
             System.out.println("----- MENÚ ------");
             System.out.println("1. Agregar producto");
@@ -34,19 +29,19 @@ public class Controller
 
             int option;
 
-            try 
+            try
             {
                 option = Integer.parseInt(sc.nextLine());
             }
-            catch (InputMismatchException | NumberFormatException e) 
+            catch (InputMismatchException | NumberFormatException e)
             {
                 continue;
             }
 
-            switch (option) 
+            switch (option)
             {
                 case 1 -> {
-                    addProduct();
+                    //addProduct();
                 }
                 case 2 -> {
                     System.out.print("Ingrese el ID a buscar: ");
@@ -104,50 +99,14 @@ public class Controller
         }
     }
 
-    private void addProduct() 
-    {
-
-        cleanScreen();
-
-        int id = DetermineId.getId(PathsConfig.DATA_PRODUCT.toString());
-
-        System.out.print("Nombre: ");
-        String name = sc.nextLine();
-
-        System.out.print("Cantidad: ");
-        double quantity = Double.parseDouble(sc.nextLine());
-
-        System.out.print("Precio: ");
-        int price = Integer.parseInt(sc.nextLine());
-
-        System.out.print("Descripción: ");
-        String description = sc.nextLine();
-
-        System.out.print("Categoría: ");
-        String category = sc.nextLine();
-
-        System.out.print("¿Está disponible? (true/false): ");
-        boolean status = Boolean.parseBoolean(sc.nextLine());
-
-        Product nuevo = new Product(id, name, quantity, price, description, category, status);
-
-        DataStorage.save(nuevo);
-        products.add(nuevo);
-
-        cleanScreen();
-
-        System.out.println("\nProducto guardado correctamente!");
-        waitUser();
-    }
-
-    private void waitUser() 
+    private void waitUser()
     {
         System.out.println("\nPresione ENTER para volver al menú...");
         sc.nextLine();
     }
 
     public static void cleanScreen() {
-        try 
+        try
         {
             // Compatible con Windows y Linux
             if (System.getProperty("os.name").contains("Windows")) //consigue del sistema operativo su nombre y verifica si es windows 
@@ -159,15 +118,15 @@ public class Controller
                 inheritIO() hace que el proceso hijo use la misma entrada/salida que el proceso padre
                 start() inicia el proceso
                 waitFor() espera a que el proceso termine antes de continuar*/
-            } 
-            else 
+            }
+            else
             {
                 System.out.print("\033[H\033[2J\033[3J"); // ANSI codigos de escape
                 System.out.flush();//Limpia la consola en sistemas tipo Unix (Linux, macOS), asegura que se apliquen los cambios inmediatamente
 
             }
-        } 
-        catch (IOException | InterruptedException e) 
+        }
+        catch (IOException | InterruptedException e)
         {
             System.out.println("No se pudo limpiar la consola.");
         }

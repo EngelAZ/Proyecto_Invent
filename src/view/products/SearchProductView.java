@@ -1,9 +1,28 @@
 package view.products;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class SearchProductView extends JPanel {
-    public SearchProductView() {
-        // Aquí se podra configurar el panel y agregar los componentes necesarios para la vista de buscar producto
+    public SearchProductView() 
+    {
+        configurePanel();
+        intComponents();
+    }
+
+    private void configurePanel()
+    {
+        this.setLayout(new BorderLayout(0,0));
+        this.setBackground(new Color(242,240,239));
+    }
+
+    private void intComponents()
+    {
+        JLabel label = new JLabel("SearchProduct", JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 22));
+        this.add(label, BorderLayout.CENTER);
     }
 }
