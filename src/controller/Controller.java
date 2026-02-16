@@ -43,7 +43,7 @@ public class Controller
             switch (option) 
             {
                 case 1 -> {
-                    addProduct();
+                    //addProduct();
                 }
                 case 2 -> {
                     System.out.print("Ingrese el ID a buscar: ");
@@ -91,7 +91,7 @@ public class Controller
         }
     }
 
-    private void addProduct() 
+    public void addProduct(String name, double quantity, int price, String description, String category)
     {
 
         cleanScreen();
@@ -99,24 +99,24 @@ public class Controller
         int id = DetermineId.getId(PathsConfig.DATA_PRODUCT.toString());
 
         System.out.print("Nombre: ");
-        String name = sc.nextLine();
+       // String name = sc.nextLine();
 
         System.out.print("Cantidad: ");
-        double quantity = Double.parseDouble(sc.nextLine());
+        //double quantity = Double.parseDouble(sc.nextLine());
 
         System.out.print("Precio: ");
-        int price = Integer.parseInt(sc.nextLine());
+        //int price = Integer.parseInt(sc.nextLine());
 
         System.out.print("Descripción: ");
-        String description = sc.nextLine();
+       // String description = sc.nextLine();
 
         System.out.print("Categoría: ");
-        String category = sc.nextLine();
+        //String category = sc.nextLine();
 
         System.out.print("¿Está disponible? (true/false): ");
-        boolean status = Boolean.parseBoolean(sc.nextLine());
+       // boolean status = Boolean.parseBoolean(sc.nextLine());
 
-        Product nuevo = new Product(id, name, quantity, price, description, category, status);
+        Product nuevo = new Product(id, name, quantity, price, description, category);
 
         DataStorage.save(nuevo);
         products.add(nuevo);
@@ -124,7 +124,7 @@ public class Controller
         cleanScreen();
 
         System.out.println("\nProducto guardado correctamente!");
-        waitUser();
+       // waitUser();
     }
 
     private void waitUser() 

@@ -9,6 +9,9 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import view.dashboard.*;
+import view.products.*;
+
 
 
 public class MenuView extends JPanel {
@@ -51,36 +54,37 @@ public class MenuView extends JPanel {
         sidebar = new JPanel(); // Crea un nuevo JPanel para la barra lateral (sidebar) que se ubicará en el lado izquierdo de la ventana
         sidebar.setBackground(new Color(39, 39, 87)); // Establece el color de fondo del sidebar a un tono de verde (RGB: 5, 103, 79)
         sidebar.setPreferredSize(new Dimension(325, 0));// Sugiere un tamaño preferido para el sidebar al Layout Manager, con un ancho de 200 píxeles y una altura automática (0)
-        sidebar.setLayout(new GridLayout(4, 1, 40, 30));// Establece un layout de tipo GridLayout(nos ofrece poder tener una organizacin en cuadricula) para organizar los botones en el sidebar, con 4 filas, 1 columna, y un espacio horizontal de 40 píxeles y vertical de 30 píxeles entre los componentes
+        sidebar.setLayout(new GridLayout(5, 1, 40, 30));// Establece un layout de tipo GridLayout(nos ofrece poder tener una organizacin en cuadricula) para organizar los botones en el sidebar, con 4 filas, 1 columna, y un espacio horizontal de 40 píxeles y vertical de 30 píxeles entre los componentes
 
         // SIDEBAR BUTTONS
-        JButton btnDashboard = new JButton("Dashboard");// Crea un nuevo JButton para el botón "Dashboard" que se mostrará en el sidebar
-        btnDashboard.setBackground(new Color(211, 211, 211)); // Establece el color de fondo del botón "Dashboard" a un tono de gris claro (RGB: 211, 211, 211)
-        JButton btnProducts = new JButton("Products");
-        btnProducts.setBackground(new Color(211, 211, 211));
-        JButton btnSales = new JButton("Sales");
-        btnSales.setBackground(new Color(211, 211, 211));
+        JButton btnDashboardView = new JButton("Dashboard");// Crea un nuevo JButton para el botón "Dashboard" que se mostrará en el sidebar
+        btnDashboardView.setBackground(new Color(211, 211, 211)); // Establece el color de fondo del botón "Dashboard" a un tono de gris claro (RGB: 211, 211, 211)
+        JButton btnAddProductsView = new JButton("Products");
+        btnAddProductsView.setBackground(new Color(211, 211, 211));
+        JButton btnSearchProductsView = new JButton("Search Product");
+        btnSearchProductsView.setBackground(new Color(211, 211, 211));
+        JButton btnRemoveProductsView = new JButton("Remove Product");
+        btnRemoveProductsView.setBackground(new Color(211, 211, 211));
 
-        sidebar.add(btnDashboard);// Agrega el botón "Dashboard" al sidebar
-        sidebar.add(btnProducts);
-        sidebar.add(btnSales);
+        sidebar.add(btnDashboardView);// Agrega el botón "Dashboard" al sidebar
+        sidebar.add(btnAddProductsView);
+        sidebar.add(btnSearchProductsView);
+        sidebar.add(btnRemoveProductsView);
 
         // CONTENT PANEL WITH CARDLAYOUT TO SWITCH BETWEEN VIEWS
         cardLayout = new CardLayout();// Crea un nuevo CardLayout para el panel de contenido, que permitirá cambiar entre diferentes vistas (Dashboard, Products, Sales) dentro del mismo espacio
         contentPanel = new JPanel(cardLayout);// Crea un nuevo JPanel para el panel de contenido y le asigna el CardLayout creado anteriormente, lo que permitirá mostrar diferentes componentes (vistas) según la selección del usuario en el sidebar
-        // *these are provisionals*
-        JPanel dashboardPanel = createPanel("Dashboard View");// Crea un nuevo JPanel para la vista del Dashboard utilizando el método createPanel, que genera un panel con un JLabel centrado que muestra el texto "Dashboard View"
-        JPanel productsPanel = createPanel("Products View");
-        JPanel salesPanel = createPanel("Sales View");
 
-        contentPanel.add(dashboardPanel, "DASHBOARD");// Agrega el panel del Dashboard al panel de contenido con la etiqueta "DASHBOARD" para identificarlo dentro del CardLayout
-        contentPanel.add(productsPanel, "PRODUCTS");
-        contentPanel.add(salesPanel, "SALES");
+        contentPanel.add(new DashboardView(), "DASHBOARD");// Agrega el panel del Dashboard al panel de contenido con la etiqueta "DASHBOARD" para identificarlo dentro del CardLayout
+        contentPanel.add(new AddProductView(), "PRODUCTS");
+        contentPanel.add(new SearchProductView(), "SEARCH_PRODUCT");
+        contentPanel.add(new RemoveProductView(), "REMOVE_PRODUCT");
 
         // EVENTS
-        btnDashboard.addActionListener(e -> cardLayout.show(contentPanel, "DASHBOARD"));// Agrega un ActionListener al botón "Dashboard" que, al ser presionado, mostrará el panel del Dashboard en el panel de contenido utilizando el método show del CardLayout con la etiqueta "DASHBOARD"
-        btnProducts.addActionListener(e -> cardLayout.show(contentPanel, "PRODUCTS"));
-        btnSales.addActionListener(e -> cardLayout.show(contentPanel, "SALES"));
+        btnDashboardView.addActionListener(e -> cardLayout.show(contentPanel, "DASHBOARD"));// Agrega un ActionListener al botón "Dashboard" que, al ser presionado, mostrará el panel del Dashboard en el panel de contenido utilizando el método show del CardLayout con la etiqueta "DASHBOARD"
+        btnAddProductsView.addActionListener(e -> cardLayout.show(contentPanel, "PRODUCTS"));
+        btnSearchProductsView.addActionListener(e -> cardLayout.show(contentPanel, "SEARCH_PRODUCT"));
+        btnRemoveProductsView.addActionListener(e -> cardLayout.show(contentPanel, "REMOVE_PRODUCT"));
 
         // ADD EVERYTHING TO THE MAIN PANEL
         this.add(title, BorderLayout.NORTH); // Agrega el JLabel del título al panel principal en la posición norte (arriba) utilizando el BorderLayout
@@ -90,11 +94,11 @@ public class MenuView extends JPanel {
 
     //*This Method is provisional*
     // Method for creating simple panels
-    private JPanel createPanel(String text) {
+   /*  private JPanel createPanel(String text) {
         JPanel panel = new JPanel(new BorderLayout());
         JLabel label = new JLabel(text, JLabel.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, 22));
         panel.add(label, BorderLayout.CENTER);
         return panel;
-    }
+    }*/
 }
