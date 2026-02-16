@@ -68,31 +68,13 @@ public class AddProductView extends JPanel
         formPanel.add(new JLabel(""));
         formPanel.add(btnAdd);
 
-        btnAdd.addActionListener(e -> addProduct());
 
         // ===== PANEL CENTRAL (Tabla) =====
         tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBorder(BorderFactory.createTitledBorder("Product List"));
 
         String[] columns = {"Id","Name", "Quantity", "Price", "Description", "Category", "Status"};
-        //esto lo debe de hacer el controlador, no la vista, pero lo hago aquí para mostrar la tabla con datos...
         model = new DefaultTableModel(columns, 0);
-        /*
-        ArrayList<Product> list = DataStorage.downloadData();
-
-        for (Product p : list) {
-            model.addRow(new Object[]{
-                p.getId(),
-                p.getName(),
-                p.getQuantity(),
-                p.getPrice(),
-                p.getDescription(),
-                p.getCategory(),
-                p.getStatus()
-            });
-        }
-        // ... del controlador es que tiene que venir este model*/
-        refreshTable();
         JTable table = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -103,28 +85,42 @@ public class AddProductView extends JPanel
         this.add(tablePanel, BorderLayout.CENTER);
     }
 
-    private void addProduct()
+    public void setController(Controller controller)
     {
-        String name = txtName.getText();
-        String description = txtDescription.getText();
-        double quantity = Double.parseDouble(txtQuantity.getText());
-        String category = txtCategory.getText();
-        int price = Integer.parseInt(txtPrice.getText());
-
-        Controller c = new Controller();
-        c.addProduct(name, quantity, price, description, category);
-
-        refreshTable(); // Actualizar la tabla después de agregar el producto
-
-        clearFields();
+        btnAdd.addActionListener(e -> controller.addProduct());
     }
 
-    private void refreshTable()
+    public String getNameField()
+    {
+        return txtName.getText();
+    }
+
+    public double getQuantityField()
+    {
+        return Double.parseDouble(txtQuantity.getText());
+    }
+
+    public int getPriceField()
+    {
+        return Integer.parseInt(txtPrice.getText());
+    }
+
+    public String getDescriptionField()
+    {
+        return txtDescription.getText();
+    }
+
+    public String getCategory()
+    {
+        return txtCategory.getText();
+    }
+
+
+    public void updateTable(ArrayList<Product> products)
     {
         model.setRowCount(0); // Limpiar la tabla antes de cargar los datos
-        ArrayList<Product> list = DataStorage.downloadData();
 
-        for (Product p : list) {
+        for (Product p : products) {
             model.addRow(new Object[]{
                 p.getId(),
                 p.getName(),
@@ -137,30 +133,12 @@ public class AddProductView extends JPanel
         }
     }
 
-    private void clearFields() {
+    public void clearFields()
+    {
     txtName.setText("");
     txtQuantity.setText("");
     txtPrice.setText("");
     txtDescription.setText("");
     txtCategory.setText("");
-}
-    /*
-    public AddProductView()
-    {
-        configurePanel();
-        intComponents();
     }
-
-    private void configurePanel()
-    {
-        this.setLayout(new BorderLayout());
-        this.setBackground(new Color(242,240,239));
-    }
-
-    private void intComponents()
-    {
-        JLabel label = new JLabel("AddProduct", JLabel.CENTER);
-        label.setFont(new Font("Arial", Font.BOLD, 22));
-        this.add(label, BorderLayout.CENTER);
-    }*/
 }

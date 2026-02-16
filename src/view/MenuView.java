@@ -1,5 +1,6 @@
 package view;
 
+import controller.Controller;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -71,12 +72,18 @@ public class MenuView extends JPanel {
         sidebar.add(btnSearchProductsView);
         sidebar.add(btnRemoveProductsView);
 
+        //Controlador tenga acceso a las vistas
+
+        AddProductView addProductView = new AddProductView();
+        Controller c = new Controller(addProductView);
+        addProductView.setController(c);
+
         // CONTENT PANEL WITH CARDLAYOUT TO SWITCH BETWEEN VIEWS
         cardLayout = new CardLayout();// Crea un nuevo CardLayout para el panel de contenido, que permitirá cambiar entre diferentes vistas (Dashboard, Products, Sales) dentro del mismo espacio
         contentPanel = new JPanel(cardLayout);// Crea un nuevo JPanel para el panel de contenido y le asigna el CardLayout creado anteriormente, lo que permitirá mostrar diferentes componentes (vistas) según la selección del usuario en el sidebar
 
         contentPanel.add(new DashboardView(), "DASHBOARD");// Agrega el panel del Dashboard al panel de contenido con la etiqueta "DASHBOARD" para identificarlo dentro del CardLayout
-        contentPanel.add(new AddProductView(), "PRODUCTS");
+        contentPanel.add(addProductView, "PRODUCTS");
         contentPanel.add(new SearchProductView(), "SEARCH_PRODUCT");
         contentPanel.add(new RemoveProductView(), "REMOVE_PRODUCT");
 
