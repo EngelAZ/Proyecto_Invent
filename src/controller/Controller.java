@@ -7,7 +7,7 @@ import model.Product;
 import model.Ventas;
 
 
-public class Controller 
+public class Controller
 {
     Scanner sc = new Scanner(System.in);
 

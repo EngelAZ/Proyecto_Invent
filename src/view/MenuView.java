@@ -1,6 +1,6 @@
 package view;
 
-import controller.AddProductController;
+import controller.*;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -75,8 +75,12 @@ public class MenuView extends JPanel {
         //Controlador tenga acceso a las vistas
 
         AddProductView addProductView = new AddProductView();
-        AddProductController c = new AddProductController(addProductView);
-        addProductView.setController(c);
+        AddProductController a = new AddProductController(addProductView);
+        addProductView.setController(a);
+
+        RemoveProductView removeProductView = new RemoveProductView();
+        RemoveProductController r = new RemoveProductController(removeProductView);
+        removeProductView.setController(r);
 
         // CONTENT PANEL WITH CARDLAYOUT TO SWITCH BETWEEN VIEWS
         cardLayout = new CardLayout();// Crea un nuevo CardLayout para el panel de contenido, que permitirá cambiar entre diferentes vistas (Dashboard, Products, Sales) dentro del mismo espacio
@@ -85,7 +89,7 @@ public class MenuView extends JPanel {
         contentPanel.add(new DashboardView(), "DASHBOARD");// Agrega el panel del Dashboard al panel de contenido con la etiqueta "DASHBOARD" para identificarlo dentro del CardLayout
         contentPanel.add(addProductView, "PRODUCTS");
         contentPanel.add(new SearchProductView(), "SEARCH_PRODUCT");
-        contentPanel.add(new RemoveProductView(), "REMOVE_PRODUCT");
+        contentPanel.add(removeProductView, "REMOVE_PRODUCT");
 
         // EVENTS
         btnDashboardView.addActionListener(e -> cardLayout.show(contentPanel, "DASHBOARD"));// Agrega un ActionListener al botón "Dashboard" que, al ser presionado, mostrará el panel del Dashboard en el panel de contenido utilizando el método show del CardLayout con la etiqueta "DASHBOARD"

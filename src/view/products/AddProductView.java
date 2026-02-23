@@ -43,14 +43,14 @@ public class AddProductView extends JPanel
         return txtName.getText();
     }
 
-    public double getQuantityField()
+    public String getQuantityField()
     {
-        return Double.parseDouble(txtQuantity.getText());
+        return txtQuantity.getText();
     }
 
-    public int getPriceField()
+    public String getPriceField()
     {
-        return Integer.parseInt(txtPrice.getText());
+        return txtPrice.getText();
     }
 
     public String getDescriptionField()
@@ -102,7 +102,7 @@ public class AddProductView extends JPanel
         tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBorder(BorderFactory.createTitledBorder("Product List"));
 
-        String[] columns = {"Id","Name", "Quantity", "Price", "Description", "Category", "Status"};
+        String[] columns = {"Id", "Name", "Quantity", "Price", "Description", "Category", "Status"};
         model = new DefaultTableModel(columns, 0);
         JTable table = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(table);

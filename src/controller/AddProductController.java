@@ -21,15 +21,14 @@ public class AddProductController
     {
         int id = DetermineId.getId(PathsConfig.DATA_PRODUCT.toString());
         String name = addProductView.getNameField();
-        double quantity = addProductView.getQuantityField();
-        int price = addProductView.getPriceField();
+        double quantity = Double.parseDouble(addProductView.getQuantityField());
+        int price = Integer.parseInt(addProductView.getPriceField());
         String description = addProductView.getDescriptionField();
         String category = addProductView.getCategory();
 
         Product nuevo = new Product(id, name, quantity, price, description, category);
 
         DataStorage.save(nuevo);
-        //products.add(nuevo);
 
         loadTable();
         addProductView.clearFields();
@@ -37,6 +36,7 @@ public class AddProductController
 
     private void loadTable()
     {
+
         ArrayList<Product> list = DataStorage.downloadData();
         addProductView.updateTable(list);
     }
