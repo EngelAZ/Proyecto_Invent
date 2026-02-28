@@ -12,15 +12,15 @@ import model.Product;
 
 
 
-public class DataStorage 
+public class DataStorage
 {
     public static final String DATA = PathsConfig.DATA_PRODUCT.toString();
 
     // Método para guardar productos
-    public static void save(Product p) 
+    public static void save(Product p)
     {
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(DATA,true))) 
+        try (PrintWriter writer = new PrintWriter(new FileWriter(DATA,true)))
         {
             writer.println(p.toString());
         } catch (IOException e) {
@@ -37,11 +37,11 @@ public class DataStorage
         try (BufferedReader reader = new BufferedReader(new FileReader(DATA)))
         {
 
-           String linea;
+            String linea;
 
-           while ((linea = reader.readLine()) != null) 
+            while ((linea = reader.readLine()) != null)
             {
-                // ignorar líneas vacías 
+                // ignorar líneas vacías
                 if (linea.trim().isEmpty()) continue;
 
                 String[] datos = linea.split(",");
@@ -58,7 +58,7 @@ public class DataStorage
                     Integer.parseInt(datos[0].trim()),
                     datos[1].trim(),
                     Double.parseDouble(datos[2].trim()),
-                    Integer.parseInt(datos[3].trim()), 
+                    Integer.parseInt(datos[3].trim()),
                     datos[4].trim(),
                     datos[5].trim(),
                     Boolean.parseBoolean(datos[6].trim())
@@ -122,7 +122,7 @@ public class DataStorage
             }
         }
         return eliminado;
-    } 
+    }
 
     public static boolean disminuirCantidad(int id, double cantidad)
     {
@@ -132,7 +132,7 @@ public class DataStorage
         {
             if(p.getId() == id)
             {
-                if (p.getQuantity() >= cantidad) 
+                if (p.getQuantity() >= cantidad)
                 {
                     p.setQuantity(p.getQuantity() - cantidad);
 
@@ -154,7 +154,7 @@ public class DataStorage
     public static void rewriteAll(ArrayList<Product> products)
     {
         try (PrintWriter writer = new PrintWriter(new FileWriter(DATA)))
-        {    
+        {
             for (Product p : products)
             {
                 writer.println(p.toString());

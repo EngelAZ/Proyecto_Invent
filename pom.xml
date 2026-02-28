@@ -41,7 +41,6 @@
                     <target>22</target>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
